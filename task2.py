@@ -12,6 +12,8 @@ def std_func(operands, func, modules):
     for i in modules:
         if hasattr(i, func):
             math_func = getattr(i, func)
+            if math_func == operator.truediv and args.operands[1] == 0:
+                raise ZeroDivisionError("Can not divide by zero")
             return math_func(*operands)
     raise AttributeError("Your function is not found")
 
